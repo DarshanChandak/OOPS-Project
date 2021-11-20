@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>insert title here</title>
+</head>
+<body>
+<form action="./register.jsp" method="post">
+		<fieldset>
+			<legend align="left"><b>personal information</b></legend><br>
+			first name: <input type="text" name="firstName" placeholder="first name" required>
+			last name: <input type="text" name="lastName" placeholder="last name"><br><br>
+			Residential Address: <input type="text" name="address" placeholder="Address" required><br><br>
+			Car Registration Number: <input type="text" name="regno" placeholder="TS01XX0000" required><br><br>
+		</fieldset><br>
+		<fieldset>
+			<legend align="left"><b>contact</b></legend><br>
+			phone number: <input type="number" name="phoneNo" placeholder="eg: 99xxxxxx00" maxlength="10" size="16" min="0" required><br><br>
+			email id: <input type="text" name="email" placeholder="eg: abc@xyz.com" required><br>
+		</fieldset><br>
+		<fieldset>
+			<legend align="left"><b>login info</b></legend><br>	
+			user id: <input type="text" name="username" placeholder="eg: user id" required><br><br>
+			password: <input type="password" name="pswd" placeholder="password" required><br><br>
+			confirm password: <input type="password" name="rpswd" placeholder="confirm password" required><br>
+		</fieldset><br>
+		<button type="submit">Submit</button>
+</form>
+</body>
+</html>
