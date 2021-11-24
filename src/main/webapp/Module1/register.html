@@ -1,30 +1,53 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>insert title here</title>
+    <title>
+
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="register.css">
 </head>
+
 <body>
-<form action="./register.jsp" method="post">
-		<fieldset>
-			<legend align="left"><b>personal information</b></legend><br>
-			first name: <input type="text" name="firstName" placeholder="first name" required>
-			last name: <input type="text" name="lastName" placeholder="last name"><br><br>
-			Residential Address: <input type="text" name="address" placeholder="Address" required><br><br>
-			Car Registration Number: <input type="text" name="regno" placeholder="TS01XX0000" required><br><br>
-		</fieldset><br>
-		<fieldset>
-			<legend align="left"><b>contact</b></legend><br>
-			phone number: <input type="number" name="phoneNo" placeholder="eg: 99xxxxxx00" maxlength="10" size="16" min="0" required><br><br>
-			email id: <input type="text" name="email" placeholder="eg: abc@xyz.com" required><br>
-		</fieldset><br>
-		<fieldset>
-			<legend align="left"><b>login info</b></legend><br>	
-			user id: <input type="text" name="username" placeholder="eg: user id" required><br><br>
-			password: <input type="password" name="pswd" placeholder="password" required><br><br>
-			confirm password: <input type="password" name="rpswd" placeholder="confirm password" required><br>
-		</fieldset><br>
-		<button type="submit">Submit</button>
-</form>
+    <div id="login-box">
+        <center>
+            <div class="left">
+                <h1><b><font color="white">SIGN UP!</font></b></h1>
+                <form action="./register.jsp" method="post">
+                    <fieldset>
+                        <legend align="left"><b><font color="white">PERSONAL INFORMATION:</font></b></legend><br>
+                        <input type="text" name="firstName" placeholder="First Name" required />
+                        <input type="text" name="lastName" placeholder="Last Name" />
+                        <input type="text" name="address" placeholder="Address" required />
+                        <input type="text" name="regno" placeholder="Car Registration Number" required />
+                    </fieldset><br>
+                    <fieldset>
+                        <legend align="left"><b><font color="white">CONTACT:</font></b></legend><br>
+                        <input type="text" name="phoneNo" placeholder="Phone Number" required />
+                        <input type="email" name="email" placeholder="E-mail" required />
+                    </fieldset><br>
+                    <fieldset>
+                        <legend align="left"><b><font color="white">LOGIN INFORMATION:</font></b></legend><br>
+                        <input type="text" name="username" placeholder="Username" required />
+                        <input type="password" name="password" placeholder="Password" required />
+                        <input type="password" name="confirm_password" placeholder="Confirm password" required />
+                    </fieldset><br>
+
+                    <input type="submit" name="signup_submit" value="SIGN ME UP!" />
+                </form>
+            </div>
+        </center>
+
+        <div class="right">
+            <span class="loginwith">Sign up with<br />Social Network:</span>
+            <div style="position:relative; top:7%;" align="center">
+                <a href="#" class="fa fa-facebook"><span></span></a><br>
+                <a href="#" class="fa fa-twitter"><span></span></a><br>
+                <a href="#" class="fa fa-google"><span></span></a>
+            </div>
+        </div>
+        <div class="or">OR</div>
+    </div>
 </body>
+
 </html>

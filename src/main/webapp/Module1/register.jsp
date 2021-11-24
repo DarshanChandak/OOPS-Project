@@ -4,7 +4,7 @@
 
 <%
 	String username = request.getParameter("username");
-	String password = request.getParameter("pswd");
+	String password = request.getParameter("password");
 	String firstName = request.getParameter("firstName");
 	String lastName = request.getParameter("lastName");
 	String address = request.getParameter("address");
