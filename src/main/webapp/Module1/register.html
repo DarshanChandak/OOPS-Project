@@ -6,25 +6,49 @@
     </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="register.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="279647308222-9kftfme5f74mov5u87fcdgl07jahp8o3.apps.googleusercontent.com">
+    
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </head>
 
 <body>
     <div id="login-box">
-        <center>
             <div class="left">
                 <h1><b><font color="white">SIGN UP!</font></b></h1>
                 <form action="./register.jsp" method="post">
                     <fieldset>
                         <legend align="left"><b><font color="white">PERSONAL INFORMATION:</font></b></legend><br>
-                        <input type="text" name="firstName" placeholder="First Name" required />
-                        <input type="text" name="lastName" placeholder="Last Name" />
+                        <input type="text" name="firstName" placeholder="First Name" id="firstName" required />
+                        <input type="text" name="lastName" id="lastName" placeholder="Last Name" />
                         <input type="text" name="address" placeholder="Address" required />
                         <input type="text" name="regno" placeholder="Car Registration Number" required />
                     </fieldset><br>
                     <fieldset>
                         <legend align="left"><b><font color="white">CONTACT:</font></b></legend><br>
                         <input type="text" name="phoneNo" placeholder="Phone Number" required />
-                        <input type="email" name="email" placeholder="E-mail" required />
+                        <input type="email" name="email" placeholder="E-mail" id="email" required />
                     </fieldset><br>
                     <fieldset>
                         <legend align="left"><b><font color="white">LOGIN INFORMATION:</font></b></legend><br>
@@ -36,14 +60,51 @@
                     <input type="submit" name="signup_submit" value="SIGN ME UP!" />
                 </form>
             </div>
-        </center>
-
         <div class="right">
             <span class="loginwith">Sign up with<br />Social Network:</span>
             <div style="position:relative; top:7%;" align="center">
-                <a href="#" class="fa fa-facebook"><span></span></a><br>
-                <a href="#" class="fa fa-twitter"><span></span></a><br>
-                <a href="#" class="fa fa-google"><span></span></a>
+                <div class="fa fa-facebook"><span></span></div><br>
+                <div class="fa fa-twitter"><span></span></div><br>
+                <a class="fa fa-google"><span></span></a>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                
+                <script>
+                function onSignIn(googleUser) {
+                	//location.replace("http://localhost:8080/CarPark/Module1/register.html")
+                  	document.getElementById("email").value = "";
+                  	document.getElementById("firstName").value = "";
+                  	document.getElementById("lastName").value = "";
+                  	
+              	  var profile = googleUser.getBasicProfile();
+              	
+              	  document.getElementById("email").value = profile.getEmail();
+              	document.getElementById("email").disabled = true;
+              	
+              	var name = profile.getName().split(" ");
+              	 document.getElementById("firstName").value = capitalize(name[0]);
+              	document.getElementById("firstName").disabled = true;
+              	
+              	if(name[1] != null) {
+              		for(let i=1; name[i] != null; i++)
+              			lastName = name[i] + " ";
+              		lastName = capitalize(lastName);
+              		document.getElementById("lastName").value = lastName;
+              	}
+              	document.getElementById("lastName").disabled = true;
+              	
+              	
+              	var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                  console.log('User signed out.');
+                });
+              	}
+                
+                function capitalize(string) {
+                	const lowerCase = string.toLowerCase();
+                	return string.charAt(0).toUpperCase() + lowerCase.slice(1);
+                }
+                </script>
+                
             </div>
         </div>
         <div class="or">OR</div>

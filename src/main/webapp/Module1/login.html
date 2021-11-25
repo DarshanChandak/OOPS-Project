@@ -1,14 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+    <meta charset="ISO-8859-1">
+    <title>
+
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
 <form action="login.jsp" method="post">
 <input type="text" name="username" placeholder="Username" required>
 <input type="password" name="password" placeholder="Password" required>
 <button type="submit">Submit</button>
 </form>
+    <div id="login-box">
+        <center>
+            <div class="left">
+                <h1><b>
+                        <font color="white">SIGN UP!</font>
+                    </b></h1>
+                <form action="./login.jsp" method="post">
+                    <input type="text" name="username" placeholder="Username" required />
+                    <input type="password" name="password" placeholder="Password" required />
+
+                    <input type="submit" name="signup_submit" value="LOGIN!" />
+                </form>
+                <span class="with-line" style="color: rgb(185, 185, 185); font-size: large;"><b>OR</b></span>
+                <span class="loginwith"></span>
+                <div style="position:relative; top:-6%;" align="center">
+                    <a href="#" class="fa fa-facebook"><span></span></a>
+                    <a href="#" class="fa fa-twitter"><span></span></a>
+                    <a href="#" class="fa fa-google"><span></span></a>
+                </div>
+            </div>
+
+        </center>
+
+        <div class="right">
+
+        </div>
+
+    </div>
 </body>
-</html>
+
+</html> 
