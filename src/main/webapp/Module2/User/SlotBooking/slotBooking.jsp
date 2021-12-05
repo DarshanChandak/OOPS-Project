@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@page import="java.sql.*,java.util.*"%>
 
-    <!DOCTYPE html>
-
+<!DOCTYPE html>
+<html>
     <head>
         <!-- <meta charset="UTF-8"> -->
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <link rel="stylesheet" type="text/css" href="slotBooking.css">
-        <title>Document</title>
+        <title>Park-Ease! - Car Parking Solutions</title>
     </head>
 
     <body>
@@ -92,27 +92,31 @@
                 </div>
                 
                 <%
+                
                 	String searched = (String)request.getSession().getAttribute("SEARCHED");
                 
                 	if(searched.equals("1")) {
+                		
                 		String location = (String)request.getSession().getAttribute("LOCATION");
                 		String date = (String)request.getSession().getAttribute("DATE");
                 		String startTime = (String)request.getSession().getAttribute("START_TIME");
                 		String endTime = (String)request.getSession().getAttribute("END_TIME");
                 		
+                		request.getSession().setAttribute("LOCATION", location);
+                		request.getSession().setAttribute("DATE", date);
                 		request.getSession().setAttribute("START_TIME", startTime);
                 		request.getSession().setAttribute("END_TIME", endTime);
+                		
+                		String username = (String)request.getSession().getAttribute("USER");
+                		request.getSession().setAttribute("USER", username);
+                		request.getSession().setAttribute("SERVICES", "0");
                 		
                 		startTime = startTime.replace(":", "");
                 		endTime = endTime.replace(":", "");
                 		
-                		String hours = "" + ((Integer.parseInt(endTime) - Integer.parseInt(startTime))/100);
-                		String min = "";
-                		if(((Integer.parseInt(endTime) - Integer.parseInt(startTime))%100) < 60)
-                			min = "" + ((Integer.parseInt(endTime) - Integer.parseInt(startTime))%100);
-                		else
-                			min = "" + (((Integer.parseInt(endTime) - Integer.parseInt(startTime))%100) - 60);
-                		
+                		String hours = "" + (Integer.parseInt(startTime.substring(0,2)) - Integer.parseInt(startTime.substring(2))) * 60;
+                		String min = "" + (Integer.parseInt(endTime.substring(0,2)) - Integer.parseInt(endTime.substring(2)));
+                		                		
                 		Class.forName("com.mysql.jdbc.Driver");
                 		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "Ritvik@0507");
                 		Statement state = connect.createStatement();
@@ -125,6 +129,8 @@
                 		
                 		int price = 0;
                 		
+                		Statement state2 = connect.createStatement();
+                		                		
                 		if(serve.next()) {
                 			if(Integer.parseInt(serve.getString("car_washing")) == 1) {
                 				services += "<ul>Car Washing</ul>";
@@ -141,10 +147,33 @@
                 		}
                 		
                 		services += "</div>";
+                		int timeCheck = (Integer.parseInt(hours) + Integer.parseInt(min));
                 		
-                		while(result.next()) {
-                			price += ((Integer.parseInt(hours) * Integer.parseInt(result.getString("rate"))) + ((Integer.parseInt(min) * Integer.parseInt(result.getString("rate")))/60));
-                		out.println("<div style='background-color:black'>"
+                		if(timeCheck <= 0) {
+                			out.println("<div style='background-color:black'><center><h3>INVALID TIME ENTERED</h3></center></div>");
+                		}     
+                		
+                		while(result.next() && (timeCheck > 0)) {
+                			
+                			String option = "";
+                			int slotsAvailable = 0;
+                			ResultSet availibility = state2.executeQuery("SELECT COUNT(*) FROM current_booking WHERE location_id = '" + result.getString("id") + "' and in_time >= " + startTime + " and out_time <= " + endTime + ";");
+                    		if(availibility.next()) {
+                    			
+                    			slotsAvailable = Integer.parseInt(result.getString("slots")) - Integer.parseInt(availibility.getString(1));
+                    			if(slotsAvailable == 0) {
+                    				option = "Waitlist";
+                    			}
+                    			else {
+                    				option = "Book Now!";
+                    			}
+                    				
+                    		}
+                    		
+                			price += (((Integer.parseInt(hours) + Integer.parseInt(min)) * Integer.parseInt(result.getString("rate")))/60);
+                			hours = "" +  ((Integer.parseInt(hours) + Integer.parseInt(min))/60);
+                			min = "" + ((Integer.parseInt(hours) + Integer.parseInt(min))%60);
+                			out.println("<div style='background-color:black'>"
                 			+"<form action='./bookingConfirmation.jsp' method='post'>"
                 			+"<input type='hidden' id='parkingId' name='parkingId' value='" + result.getString("id") + "'>"
                                +" <div class='p'>"
@@ -175,14 +204,14 @@
                                 +        "</div>"
                                 +    "</div>"
                                 +    "<div class='column3'>"
-                                +        "<input type='submit' class='button_press' style='color:black' value='Book Now!'>"
+                                +        "<input type='submit' class='button_press' style='color:black' value='"+option+"'>"
                                 +    "</div>"
                                 +"</div>"
                             +"</div>"
                                    
                             + "</form>"
                         +"</div>"
-                        +"<hr>");	
+                        +"<br><br>");	
                 		}
                 	}
                 	
@@ -191,7 +220,5 @@
                 <hr>
             </section>
         </div>
-
     </body>
-
-    </html>
+</html>

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="userDashboard.css" type="text/css">
 
     <title>
-        Park-Ease!
+        Park-Ease! - Car Parking Solutions
     </title>
 </head>
 
@@ -228,8 +228,7 @@
                 <p class="p" style="text-align:right; color:rgb(241, 197, 14);font-family: Roboto, sans-serif;">
                     Corporate Office Address:</p>
                 <h5 style="text-align:right;font-family: Roboto, sans-serif;"><a href="https://goo.gl/maps/4oE5fY4Pc7zKpECo6"><i
-                            class="fas fa-map-marker-alt" style="color:rgb(241, 197, 14)"></i></a>1234 River Street New
-                    York, NY</h5>
+                            class="fas fa-map-marker-alt" style="color:rgb(241, 197, 14)"></i></a>BITS Pilani Hyderabad Campus</h5>
                 <p class="p" style="text-align:right; color:rgb(241, 197, 14);font-family: Roboto, sans-serif;">Customer
                     Service</p>
                 <h5 style="text-align:right;font-family: Roboto, sans-serif;"><a href=""><i class="fas fa-phone-alt"

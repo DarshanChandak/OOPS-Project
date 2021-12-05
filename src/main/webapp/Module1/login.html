@@ -1,70 +1,68 @@
 <html>
 
 <head>
-<title>Park-Ease! Car Parking Services</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="login.css">
+	<title>Park-Ease! - Car Parking Solutions</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="login.css">
 
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id"
-        content="279647308222-9kftfme5f74mov5u87fcdgl07jahp8o3.apps.googleusercontent.com">
+		content="279647308222-9kftfme5f74mov5u87fcdgl07jahp8o3.apps.googleusercontent.com">
 </head>
 
 <body>
 	<div id="login-box">
 		<center>
-			<h1 style="font-size:90px; color:rgb(241, 197, 14); font-weight:bold; font-family: Roboto, sans-serif;"
-			class="main-title">Park<span
-				style="font-size:90px; color:white; font-weight:bold; font-family: Roboto, sans-serif;">-Ease!</span>
-		</h1>
-		<br><h4 class="main-title2">New here?<br>
-				<a href="register.html" style="color:rgb(241, 197, 14)"><span class='notbold'>Click here to register</span></a></h4>
+			<h1 style="font-size:4.5vw; color:rgb(241, 197, 14); font-weight:bold; font-family: Roboto, sans-serif;"
+				class="main-title">Park<span
+					style="font-size:4.5vw; color:white; font-weight:bold; font-family: Roboto, sans-serif;">-Ease!</span>
+			</h1>
+			<br><br>
+			<h4 class="main-title2">New here?<br>
+				<a href="register.html" style="color:rgb(241, 197, 14)"><span class='notbold'>Click here to
+						register</span></a>
+			</h4>
 			<div class="left">
 				<h1>
-					<b> <font style="color:rgb(241, 197, 14)">SIGN IN!</font>
+					<b>
+						<font style="color:rgb(241, 197, 14);font-size: 2.5vw;">SIGN IN!</font>
 					</b>
+					
 				</h1>
-				<form action="login.jsp" method="post">
+				
+				<form action="login.jsp" method="post"><br><br><br>
 					<input type="text" id="username" name="username" placeholder="Username" required />
-					<input type="password" id="password" name="password" placeholder="Password"
-						required /> 
-					<input id="submit_form" type="submit" name="signup_submit"
-						value="SIGN IN NOW!" />
+					<input type="password" id="password" name="password" placeholder="Password" required />
+					<input id="submit_form" type="submit" name="signup_submit" value="SIGN IN NOW!" />
 				</form>
-				 <span class="with-line"
-					style="color: white; font-size: large;"><b>OR</b></span>
+				<span class="with-line" style="color: white; font-size: large;"><b>OR</b></span>
 				<span class="loginwith"></span>
-				<div style="position: relative; top: -6%;" align="center">
-					<a href="#" class="fa fa-facebook"><span></span></a> <a href="#"
-						class="fa fa-twitter"><span></span></a> <a href="#"
-						class="fa fa-google"><span></span></a>
-						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+				<div style="position: relative;" align="center">
+					<div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-                <script>
-                    function onSignIn(googleUser) {
-                        document.getElementById("username").value = "";
-                        document.getElementById("password").value = "";
+					<script>
+						function onSignIn(googleUser) {
+							document.getElementById("username").value = "";
+							document.getElementById("password").value = "";
 
-                        var profile = googleUser.getBasicProfile();
+							var profile = googleUser.getBasicProfile();
 
-                        document.getElementById("username").value = profile.getEmail();
-                        document.getElementById("password").value = "login_via_google";
+							document.getElementById("username").value = profile.getEmail();
+							document.getElementById("password").value = "login_via_google";
 
-                        var auth2 = gapi.auth2.getAuthInstance();
-                        auth2.signOut().then(function () {
-                            console.log('User signed out.');
-                        });
-                        
-                        document.getElementById("submit_form").click();
-					}
-                </script>
+							var auth2 = gapi.auth2.getAuthInstance();
+							auth2.signOut().then(function () {
+								console.log('User signed out.');
+							});
+
+							document.getElementById("submit_form").click();
+						}
+					</script>
 				</div>
 			</div>
 
 		</center>
 
-		<div class="right"></div>
 
 	</div>
 </body>

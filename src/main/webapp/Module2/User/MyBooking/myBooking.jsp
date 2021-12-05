@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>Insert title here</title>
+    <title>Park-Ease! - Car Parking Solutions</title>
     <link rel="stylesheet" type="text/css" href="myBooking.css">
 </head>
 <body>
@@ -58,8 +58,8 @@
 			
 			while(result.next()){
 				Statement state1 = connect.createStatement();
-				ResultSet location = state1.executeQuery("SELECT * from parking_slots WHERE id = '" + result.getString("location_id") + "');");
-				
+				ResultSet location = state1.executeQuery("SELECT * from parking_slots WHERE id = '" + result.getString("location_id") + "';");
+				location.next();
 				String inTime = result.getString("in_time");
 				String outTime = result.getString("out_time");
 				
