@@ -97,7 +97,7 @@
                 <div id="contactUs">
                     <div class="circle">
                         <img src="assets/contactUsLogo.png" class="symbol"><br>
-                        <a href="../About_Us/AboutUs.html" style="color: rgb(241, 197, 14); text-decoration: none;">
+                        <a href="../../AboutUs/AboutUs.html" style="color: rgb(241, 197, 14); text-decoration: none;">
                         <button class="button1" style="font-family: Roboto,sans-serif;">About Us</button></a>
                     </div>
 
